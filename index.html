@@ -27,7 +27,9 @@ const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function placeholder(a,i){const c=document.createElement('canvas');c.width=480;c.height=620;const x=c.getContext('2d');x.fillStyle=a.colors[0];x.fillRect(0,0,480,620);x.fillStyle=a.colors[1];x.beginPath();x.ellipse(220+i%3*30,285,160,225,i*.22,0,Math.PI*2);x.fill();x.fillStyle=a.colors[2];x.beginPath();x.moveTo(0,510);x.bezierCurveTo(140,190,300,570,480,260);x.lineTo(480,620);x.lineTo(0,620);x.fill();x.strokeStyle=a.colors[0];x.lineWidth=3;x.beginPath();x.arc(260,255,100,i*.3,i*.3+4);x.stroke();return c.toDataURL();}
 artworks.forEach((a,i)=>{a.src=a.image||placeholder(a,i);a.texture=new Image();a.texture.src=a.src;a.z=10+i*5;a.side=i%2?-1:1;});
 function resize(){width=innerWidth;height=innerHeight;dpr=Math.min(devicePixelRatio||1,2);canvas.width=width*dpr;canvas.height=height*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}addEventListener('resize',resize);resize();
-function project(x,y,z){const depth=z-position;if(depth<=.15)return null;const f=Math.min(width*.82,height*1.1);return {x:width/2+x*f/depth,y:height*.49-y*f/depth};}
+// Camera at standing eye level, 1.7 units above the corridor floor.
+const cameraHeight=1.05;
+function project(x,y,z){const depth=z-position;if(depth<=.15)return null;const f=Math.min(width*.82,height*1.1);return {x:width/2+x*f/depth,y:height*.49-(y-cameraHeight)*f/depth};}
 function poly(points,fill){if(points.some(p=>!p))return;ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fillStyle=fill;ctx.fill();}
 function plane(x1,y1,z1,x2,y2,z2,fill){poly([project(x1,y1,z1),project(x2,y1,z2),project(x2,y2,z2),project(x1,y2,z1)],fill)}
 function drawArt(a,i){const z=a.z;if(z-position<.5||z-position>42)return;const x=a.side*3;const p=[project(x,2.75,z-1),project(x,2.75,z+1),project(x,.35,z+1),project(x,.35,z-1)];if(p.some(v=>!v))return;
