@@ -1,26 +1,27 @@
 # Art Exhibition
 
-A scroll-controlled virtual corridor that transitions from white walls to charcoal. Built with a perspective Canvas renderer, with no external dependencies, build step, or paid services.
+A Three.js virtual gallery showing 18 original paintings in three grouped wall arrangements. Scroll to travel through a white-to-charcoal corridor. The camera turns fully toward each set and holds a centred view. Select any painting for its explanation.
 
-## Publish on GitHub Pages
+## Materials and lighting
 
-1. Open the repository’s **Settings → Pages**.
-2. Under **Build and deployment**, choose **Deploy from a branch**.
-3. Choose **main** and **/ (root)**, then **Save**.
-4. Wait for GitHub’s deployment to finish. The expected address is https://gwazyjustcause.github.io/Art-Exhibition/ . This address only becomes available after Pages is enabled and deployment succeeds.
+Paintings are 23 × 15 cm on 3 mm MDF. Panels have actual 3 mm geometry, exposed MDF edges and a small mounting gap. Warm spotlights cast shadows on textured plaster walls. The corridor includes a textured stone floor, floor joints, skirting and ceiling lighting tracks.
 
-## Add your art
+## Files
 
-Upload images into an `artworks` folder. In `index.html`, edit the `artworks` array near the top of the script. Replace a sample title and set `image` to its relative path, for example `image:'artworks/painting.jpg'`. The current eight works are generated abstract placeholders, clearly labelled throughout the prototype. Artwork description text and the end-of-exhibition text should also be replaced before presenting the final collection.
+- `index.html`: layout and typography.
+- `gallery.js`: artwork data, 3D scene, navigation, raycast interaction and detail views.
+- `assets/1- November19/`: original paintings, set references and artist explanations.
+
+Three.js 0.180.0 loads from the pinned jsDelivr URL in `gallery.js`. No build step is required. The gallery needs WebGL and an internet connection to load that dependency.
+
+## GitHub Pages
+
+Publish from `main`, `/ (root)` in Settings → Pages. Website: https://gwazyjustcause.github.io/Art-Exhibition/
+
+## Adding paintings
+
+Edit the artwork array in `gallery.js`. Each work has title, set, group, image path, artist explanation, wall side, position, width and height (in metres). Keep the set layout and camera stops aligned when adding groups. Different dimensions can be specified per painting.
 
 ## Controls
 
-- Scroll or swipe to travel forward and backward.
-- Select a painting to open its detail view.
-- Use All artworks for a keyboard-accessible overview.
-- Escape or the close button returns to the corridor.
-- Walk again returns to the entrance.
-
-## Validation
-
-JavaScript syntax checked with Node.js. No browser visual verification was performed in the authoring environment. Check desktop and mobile presentation after enabling Pages. The renderer provides perspective walls and artworks using Canvas; it does not use Three.js or physically simulated lighting.
+Scroll or swipe to move; select a painting for details; All artworks opens the accessible collection overview; Escape closes the detail view. Reduced-motion preference disables camera easing. Keyboard scrolling also works.
