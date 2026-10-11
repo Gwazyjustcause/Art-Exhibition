@@ -1,50 +1,241 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#eeeae2"><meta name="description" content="A scroll-controlled virtual art exhibition. Travel from light into darkness and explore artwork along the walls."><title>Between Light & Shadow — Art Exhibition</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#eeeae2"><meta name="description" content="A scroll-controlled virtual art exhibition. Travel from light into darkness and explore artwork along the walls."><title>Paintings — Art Exhibition</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#eeeae2;color:#242321;font-family:Arial,sans-serif}canvas{position:fixed;inset:0;width:100%;height:100%;touch-action:pan-y}header{position:fixed;z-index:2;top:0;left:0;width:100%;padding:28px 4%;display:flex;justify-content:space-between;align-items:center;gap:20px}header a{color:inherit;text-decoration:none;font-size:11px;letter-spacing:2px}button{font:inherit;cursor:pointer;color:inherit;border:1px solid currentColor;background:transparent;padding:11px 17px;border-radius:30px}button:hover{background:#8882}button:focus-visible,a:focus-visible{outline:3px solid #bd694d;outline-offset:5px}.brand{font-size:12px;letter-spacing:3px;text-transform:uppercase}.hero{position:fixed;z-index:1;left:50%;top:43%;width:min(650px,85%);transform:translate(-50%,-50%);text-align:center;pointer-events:none;background:radial-gradient(ellipse,#eeeae2eb 20%,#eeeae299 55%,transparent 74%);padding:30px 0}.eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase}h1{font:normal clamp(46px,7vw,90px)/.95 Georgia,serif;letter-spacing:-3px;margin:24px 0}h1 em{font-weight:normal} .hero p{font-size:13px;line-height:1.8}.hero button{pointer-events:auto;margin-top:20px}.bottom{position:fixed;z-index:2;bottom:25px;left:4%;right:4%;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:10px;letter-spacing:2px;text-transform:uppercase}.progress{height:2px;background:#8885;flex:1;max-width:220px}.progress i{display:block;height:100%;background:currentColor;width:0}.hint{position:fixed;z-index:2;bottom:75px;width:100%;text-align:center;font-size:12px;pointer-events:none}.end{position:fixed;z-index:1;inset:25% 15%;text-align:center;display:none}.end h2{font:normal clamp(40px,6vw,75px) Georgia,serif}.end a{color:inherit}.spacer{height:1000vh;pointer-events:none}dialog{border:0;padding:0;background:#f4f1eb;color:#242321;width:min(1000px,92vw);max-height:88dvh;overflow:auto}dialog::backdrop{background:#111c;backdrop-filter:blur(8px)}.close{position:sticky;float:right;right:15px;top:15px;z-index:3;background:#f4f1eb}.detail{padding:45px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}.detail img{width:100%;max-height:65vh;object-fit:contain}.detail h2,.catalog h2{font:normal 38px Georgia,serif}.detail p{font-size:14px;line-height:1.8}.catalog{padding:40px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.tile{padding:0;border:0;border-radius:0;text-align:left}.tile img{width:100%;aspect-ratio:4/5;object-fit:cover}.tile span{display:block;padding:12px 0;font-size:12px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}@media(max-width:600px){header{padding:20px 5%}.brand{max-width:140px;line-height:1.6;font-size:10px}header a{display:none}.detail{grid-template-columns:1fr;padding:30px;gap:12px}.grid{grid-template-columns:repeat(2,1fr)}.catalog{padding:25px}.bottom{font-size:8px}.progress{max-width:90px}h1{letter-spacing:-2px}.end{inset:28% 8%}}
+*{box-sizing:border-box}body{margin:0;background:#eeeae2;color:#242321;font-family:Arial,sans-serif}canvas{position:fixed;inset:0;width:100%;height:100%;touch-action:pan-y}header{position:fixed;z-index:2;top:0;left:0;width:100%;padding:28px 4%;display:flex;justify-content:space-between;align-items:center;gap:20px}header a{color:inherit;text-decoration:none;font-size:11px;letter-spacing:2px}button{font:inherit;cursor:pointer;color:inherit;border:1px solid currentColor;background:transparent;padding:11px 17px;border-radius:30px}button:hover{background:#8882}button:focus-visible,a:focus-visible{outline:3px solid #bd694d;outline-offset:5px}.brand{font-size:12px;letter-spacing:3px;text-transform:uppercase}.hero{position:fixed;z-index:1;left:50%;top:43%;width:min(650px,85%);transform:translate(-50%,-50%);text-align:center;pointer-events:none;background:radial-gradient(ellipse,#eeeae2eb 20%,#eeeae299 55%,transparent 74%);padding:30px 0}.eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase}h1{font:normal clamp(46px,7vw,90px)/.95 Georgia,serif;letter-spacing:-3px;margin:24px 0}h1 em{font-weight:normal} .hero p{font-size:13px;line-height:1.8}.hero button{pointer-events:auto;margin-top:20px}.bottom{position:fixed;z-index:2;bottom:25px;left:4%;right:4%;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:10px;letter-spacing:2px;text-transform:uppercase}.progress{height:2px;background:#8885;flex:1;max-width:220px}.progress i{display:block;height:100%;background:currentColor;width:0}.hint{position:fixed;z-index:2;bottom:75px;width:100%;text-align:center;font-size:12px;pointer-events:none}.end{position:fixed;z-index:1;inset:25% 15%;text-align:center;display:none}.end h2{font:normal clamp(40px,6vw,75px) Georgia,serif}.end a{color:inherit}.spacer{height:1000vh;pointer-events:none}dialog{border:0;padding:0;background:#f4f1eb;color:#242321;width:min(1000px,92vw);max-height:88dvh;overflow:auto}dialog::backdrop{background:#111c;backdrop-filter:blur(8px)}.close{position:sticky;float:right;right:15px;top:15px;z-index:3;background:#f4f1eb}.detail{padding:45px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}.detail img{width:100%;max-height:65vh;object-fit:contain}.detail h2,.catalog h2{font:normal 38px Georgia,serif}.detail p{font-size:14px;line-height:1.8}.catalog{padding:40px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.tile{padding:0;border:0;border-radius:0;text-align:left}.tile img{width:100%;aspect-ratio:23/15;object-fit:contain}.tile span{display:block;padding:12px 0;font-size:12px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}@media(max-width:600px){header{padding:20px 5%}.brand{max-width:140px;line-height:1.6;font-size:10px}header a{display:none}.detail{grid-template-columns:1fr;padding:30px;gap:12px}.grid{grid-template-columns:repeat(2,1fr)}.catalog{padding:25px}.bottom{font-size:8px}.progress{max-width:90px}h1{letter-spacing:-2px}.end{inset:28% 8%}}
 </style></head><body>
 <canvas id="scene" aria-label="Virtual gallery corridor. Scroll to move, or use the All artworks button to explore accessible artwork details."></canvas>
 <header><span class="brand">An exhibition<br>in motion</span><nav><a href="https://gwazyjustcause.github.io/Portefolio/">Artist portfolio ↗</a> &nbsp; <button id="all">All artworks</button></nav></header>
-<section class="hero" id="intro"><span class="eyebrow">A virtual gallery · Prototype</span><h1>Between Light<br>&amp; <em>Shadow</em></h1><p>A quiet passage from light into darkness.<br>Scroll to wander. Select an artwork to look closer.</p><button id="enter">Enter the exhibition ↓</button></section>
-<section class="end" id="end"><span class="eyebrow">The end of the passage</span><h2>Art deserves<br>to be seen.</h2><p>This space is waiting for the artist’s collection.</p><p><a href="https://gwazyjustcause.github.io/Portefolio/">Explore the artist’s portfolio ↗</a></p><button id="restart">Walk again ↑</button></section>
+<section class="hero" id="intro"><span class="eyebrow">Paintings on MDF · November 2019</span><h1>A passage<br>through <em>feeling</em></h1><p>A quiet passage from light into darkness.<br>Scroll to wander. Select an artwork to look closer.</p><button id="enter">Enter the exhibition ↓</button></section>
+<section class="end" id="end"><span class="eyebrow">The end of the passage</span><h2>Art deserves<br>to be seen.</h2><p>18 paintings · Three sets · November 2019.</p><p><a href="https://gwazyjustcause.github.io/Portefolio/">Explore the artist’s portfolio ↗</a></p><button id="restart">Walk again ↑</button></section>
 <div class="hint" id="hint">Scroll to enter ↓</div><footer class="bottom"><span id="chapter">01 / Light</span><div class="progress"><i id="bar"></i></div><span id="percent">0% of the passage</span></footer>
 <div class="spacer"></div><dialog id="modal" aria-labelledby="modalTitle"><button class="close" id="close" aria-label="Close artwork view">✕</button><div id="content"></div></dialog>
 <script>
 'use strict';
 // Replace image with a relative file path (e.g. artworks/my-painting.jpg) to exhibit your own work.
 const artworks = [
-{title:'Study in warmth',colors:['#eee0cb','#c36b45','#733b37'],image:null},
-{title:'A quieter blue',colors:['#d9dfdb','#5c818a','#213d50'],image:null},
-{title:'The shape of silence',colors:['#ddd2b8','#96845e','#353c32'],image:null},
-{title:'After the rain',colors:['#cad5d4','#70818c','#403744'],image:null},
-{title:'Held in red',colors:['#c3a4a1','#873e45','#2e202c'],image:null},
-{title:'Almost midnight',colors:['#83818b','#373d53','#c5a179'],image:null},
-{title:'A trace of gold',colors:['#303a3b','#ab8654','#ded1ae'],image:null},
-{title:'What remains',colors:['#252934','#675a70','#b8917d'],image:null}
+  {
+    "title": "il sacco",
+    "set": "When Did We Say Goodbye",
+    "group": 0,
+    "image": "assets/1- November19/WDWSG - Nov19/il sacco.jpg",
+    "description": "Within a brown dirtied ground there it is, the forgotten bag, he lays within, alive or dead.",
+    "z": 5,
+    "side": 1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Crusoe",
+    "set": "When Did We Say Goodbye",
+    "group": 0,
+    "image": "assets/1- November19/WDWSG - Nov19/Crusoe.jpg",
+    "description": "Robinson Crusoe, the man that spends nearly 30 years stoke on a remote island, alone, at some point we become like him, sometimes it becomes our reality.",
+    "z": 6.1,
+    "side": -1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Mianhaeyo",
+    "set": "When Did We Say Goodbye",
+    "group": 0,
+    "image": "assets/1- November19/WDWSG - Nov19/Mianhaeyo.jpg",
+    "description": "Hands darkened and eyes nearly demonic, within human and demonic presence, it regrets everything.",
+    "z": 7.199999999999999,
+    "side": 1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Breathing",
+    "set": "When Did We Say Goodbye",
+    "group": 0,
+    "image": "assets/1- November19/WDWSG - Nov19/Breathing.jpg",
+    "description": "Laying against the floor stomped by a foot there they lay, without expression.",
+    "z": 8.299999999999999,
+    "side": -1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Adios",
+    "set": "When Did We Say Goodbye",
+    "group": 0,
+    "image": "assets/1- November19/WDWSG - Nov19/Adios.jpg",
+    "description": "Man with a horse on a deserted area, either life comforting death or an acceptance of what's to become of them.",
+    "z": 9.399999999999999,
+    "side": 1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Miragem",
+    "set": "When Did We Say Goodbye",
+    "group": 0,
+    "image": "assets/1- November19/WDWSG - Nov19/Miragem.jpg",
+    "description": "It comes from within the earth and sets ablaze the whole place, the light green in the edges turns faded, the place becomes less alive and it grows.",
+    "z": 10.499999999999998,
+    "side": -1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Lorde",
+    "set": "When Did We Say Goodbye",
+    "group": 0,
+    "image": "assets/1- November19/WDWSG - Nov19/Lorde.jpg",
+    "description": "The Christian church.",
+    "z": 11.599999999999998,
+    "side": 1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Afternoon Noise",
+    "set": "When Did We Say Goodbye",
+    "group": 0,
+    "image": "assets/1- November19/WDWSG - Nov19/Afternoon Noise.jpg",
+    "description": "The tiring image of a sickened green and a obnoxious yellow where a man sit covering his face.",
+    "z": 12.699999999999998,
+    "side": -1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Solitudinem",
+    "set": "When Did We Say Goodbye",
+    "group": 0,
+    "image": "assets/1- November19/WDWSG - Nov19/Solitudinem.jpg",
+    "description": "I never asked for comfort, don't touch me pretending like you care. Figures fill the place, a place of absolutely nothing.",
+    "z": 13.799999999999997,
+    "side": 1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "We'ak",
+    "set": "When Did We Say Goodbye",
+    "group": 0,
+    "image": "assets/1- November19/WDWSG - Nov19/We_ak.jpg",
+    "description": "All the copies in the world couldn't beat the real image. They stand all the same around one single figure, he stand out within that crowd.",
+    "z": 14.899999999999997,
+    "side": -1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Late",
+    "set": "Please Call Back",
+    "group": 1,
+    "image": "assets/1- November19/Please call back - Nov19/Late.jpg",
+    "description": "Between two doors, he waits.",
+    "z": 18.499999999999996,
+    "side": 1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Night",
+    "set": "Please Call Back",
+    "group": 1,
+    "image": "assets/1- November19/Please call back - Nov19/Night.jpg",
+    "description": "Holding on to the payphone, he waits.",
+    "z": 19.599999999999998,
+    "side": -1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Noite",
+    "set": "Please Call Back",
+    "group": 1,
+    "image": "assets/1- November19/Please call back - Nov19/Noite.jpg",
+    "description": "Underneath the payphone, he waits.",
+    "z": 20.7,
+    "side": 1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Tardía",
+    "set": "Please Call Back",
+    "group": 1,
+    "image": "assets/1- November19/Please call back - Nov19/Tardía.jpg",
+    "description": "Outside the payphone, he waits.",
+    "z": 21.8,
+    "side": -1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Sound",
+    "set": "Catharsis",
+    "group": 2,
+    "image": "assets/1- November19/Catharsis - Nov19/Sound.png",
+    "description": "A white figure stands silent beneath the two lights.",
+    "z": 25.400000000000002,
+    "side": 1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Sense",
+    "set": "Catharsis",
+    "group": 2,
+    "image": "assets/1- November19/Catharsis - Nov19/Sense.png",
+    "description": "Like a jailed bird it sense the presence of someone watching, not being able to set himself free he observes quietly.",
+    "z": 26.500000000000004,
+    "side": -1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Overload",
+    "set": "Catharsis",
+    "group": 2,
+    "image": "assets/1- November19/Catharsis - Nov19/Overload.jpg",
+    "description": "Underneath a ripped wall with papers surrounding him and death standing to him side there he remains tucked within his arms.",
+    "z": 27.600000000000005,
+    "side": 1,
+    "width": 0.23,
+    "height": 0.15
+  },
+  {
+    "title": "Oath",
+    "set": "Catharsis",
+    "group": 2,
+    "image": "assets/1- November19/Catharsis - Nov19/Oath.png",
+    "description": "The figure engolfs the space where he stands, bracing himself.",
+    "z": 28.700000000000006,
+    "side": -1,
+    "width": 0.23,
+    "height": 0.15
+  }
 ];
+const journeyLength=31.30;
 const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d'),modal=document.querySelector('dialog');let width,height,dpr,position=0,target=0,hits=[],last=0;
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function placeholder(a,i){const c=document.createElement('canvas');c.width=480;c.height=620;const x=c.getContext('2d');x.fillStyle=a.colors[0];x.fillRect(0,0,480,620);x.fillStyle=a.colors[1];x.beginPath();x.ellipse(220+i%3*30,285,160,225,i*.22,0,Math.PI*2);x.fill();x.fillStyle=a.colors[2];x.beginPath();x.moveTo(0,510);x.bezierCurveTo(140,190,300,570,480,260);x.lineTo(480,620);x.lineTo(0,620);x.fill();x.strokeStyle=a.colors[0];x.lineWidth=3;x.beginPath();x.arc(260,255,100,i*.3,i*.3+4);x.stroke();return c.toDataURL();}
-artworks.forEach((a,i)=>{a.src=a.image||placeholder(a,i);a.texture=new Image();a.texture.src=a.src;a.z=10+i*5;a.side=i%2?-1:1;});
+artworks.forEach((a,i)=>{a.src=encodeURI(a.image);a.texture=new Image();a.texture.src=a.src;});
 function resize(){width=innerWidth;height=innerHeight;dpr=Math.min(devicePixelRatio||1,2);canvas.width=width*dpr;canvas.height=height*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}addEventListener('resize',resize);resize();
 // Camera at standing eye level, 1.7 units above the corridor floor.
 const cameraHeight=1.05;
 function project(x,y,z){const depth=z-position;if(depth<=.15)return null;const f=Math.min(width*.82,height*1.1);return {x:width/2+x*f/depth,y:height*.49-(y-cameraHeight)*f/depth};}
 function poly(points,fill){if(points.some(p=>!p))return;ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fillStyle=fill;ctx.fill();}
 function plane(x1,y1,z1,x2,y2,z2,fill){poly([project(x1,y1,z1),project(x2,y1,z2),project(x2,y2,z2),project(x1,y2,z1)],fill)}
-function drawArt(a,i){const z=a.z;if(z-position<.5||z-position>42)return;const x=a.side*3;const p=[project(x,2.75,z-1),project(x,2.75,z+1),project(x,.35,z+1),project(x,.35,z-1)];if(p.some(v=>!v))return;
+function drawArt(a,i){const z=a.z;if(z-position<.5||z-position>42)return;const x=a.side*1.2,top=cameraHeight+a.height/2,bottom=cameraHeight-a.height/2;const p=[project(x,top,z-a.width/2),project(x,top,z+a.width/2),project(x,bottom,z+a.width/2),project(x,bottom,z-a.width/2)];if(p.some(v=>!v))return;
 poly(p,'#181918');ctx.save();ctx.beginPath();p.forEach((v,j)=>j?ctx.lineTo(v.x,v.y):ctx.moveTo(v.x,v.y));ctx.closePath();ctx.clip();
 // Vertical image strips follow the wall's perspective, with no external rendering dependency.
-const image=a.texture;if(image.complete&&image.naturalWidth){for(let s=0;s<100;s++){let u=s/100,v=(s+1)/100;const top={x:p[0].x+(p[1].x-p[0].x)*u,y:p[0].y+(p[1].y-p[0].y)*u},bottom={x:p[3].x+(p[2].x-p[3].x)*u,y:p[3].y+(p[2].y-p[3].y)*u};let nx=p[0].x+(p[1].x-p[0].x)*v;ctx.drawImage(image,s*image.naturalWidth/100,0,image.naturalWidth/100+1,image.naturalHeight,Math.min(top.x,nx),top.y,Math.abs(nx-top.x)+1,bottom.y-top.y);}}ctx.restore();ctx.strokeStyle='#262624';ctx.lineWidth=4;ctx.beginPath();p.forEach((v,j)=>j?ctx.lineTo(v.x,v.y):ctx.moveTo(v.x,v.y));ctx.closePath();ctx.stroke();hits.push({points:p,index:i});
-const label=project(x,.1,z);if(label && z-position<15){ctx.fillStyle=z>28?'#dad5cb':'#494743';ctx.font='10px Arial';ctx.textAlign='center';ctx.fillText(String(i+1).padStart(2,'0')+' / PLACEHOLDER',label.x,label.y);}}
-function tick(time){let dt=Math.min((time-last)/1000,.05);last=time;if(!modal.open){target=scrollY/Math.max(1,document.documentElement.scrollHeight-height)*48;position=reduced?target:position+(target-position)*(1-Math.exp(-dt*7));}let dark=Math.max(0,Math.min(1,(position-16)/19));let bg=Math.round(237-dark*208);ctx.fillStyle=`rgb(${bg},${bg},${bg})`;ctx.fillRect(0,0,width,height);hits=[];
-const near=position+.16,far=58;const floor=ctx.createLinearGradient(0,height*.49,0,height);floor.addColorStop(0,dark>.5?'#292a2b':'#b5b1a9');floor.addColorStop(1,dark>.5?'#17191c':'#ded8cc');poly([project(-3,-.65,near),project(3,-.65,near),project(3,-.65,far),project(-3,-.65,far)],floor);
-for(let z=56;z>=Math.floor(position/4)*4;z-=4){let n=Math.max(z,near),e=z+4;if(e<=near)continue;let t=Math.max(0,Math.min(1,(z-17)/20)),g=Math.round(244-t*204);plane(-3,3.8,n,-3,-.65,e,`rgb(${g},${g},${g-2})`);plane(3,3.8,n,3,-.65,e,`rgb(${g-9},${g-9},${g-11})`);const l=project(-3,-.65,e),r=project(3,-.65,e);if(l&&r){ctx.strokeStyle=dark>.5?'#ffffff08':'#00000008';ctx.beginPath();ctx.moveTo(l.x,l.y);ctx.lineTo(r.x,r.y);ctx.stroke();}for(const side of [-1,1]){const p=project(side*2.2,3.7,z+2);if(p){ctx.fillStyle=t>.5?'#c4b594':'#fffdf4';ctx.fillRect(p.x-10,p.y,20,2);}}}
+const image=a.texture;if(image.complete&&image.naturalWidth){for(let s=0;s<100;s++){let u=s/100,v=(s+1)/100;const top={x:p[0].x+(p[1].x-p[0].x)*u,y:p[0].y+(p[1].y-p[0].y)*u},bottom={x:p[3].x+(p[2].x-p[3].x)*u,y:p[3].y+(p[2].y-p[3].y)*u};let nx=p[0].x+(p[1].x-p[0].x)*v;ctx.drawImage(image,s*image.naturalWidth/100,0,image.naturalWidth/100+1,image.naturalHeight,Math.min(top.x,nx),top.y,Math.abs(nx-top.x)+1,bottom.y-top.y);}}ctx.restore();ctx.strokeStyle='#262624';ctx.lineWidth=1;ctx.beginPath();p.forEach((v,j)=>j?ctx.lineTo(v.x,v.y):ctx.moveTo(v.x,v.y));ctx.closePath();ctx.stroke();hits.push({points:p,index:i});
+const label=project(x,cameraHeight-a.height/2-.05,z);if(label && z-position<3.5){ctx.fillStyle=z>28?'#dad5cb':'#494743';ctx.font='10px Arial';ctx.textAlign='center';ctx.fillText(String(i+1).padStart(2,'0')+' / '+a.title,label.x,label.y);}}
+function tick(time){let dt=Math.min((time-last)/1000,.05);last=time;if(!modal.open){target=scrollY/Math.max(1,document.documentElement.scrollHeight-height)*journeyLength;position=reduced?target:position+(target-position)*(1-Math.exp(-dt*7));}let dark=Math.max(0,Math.min(1,position/journeyLength));let bg=Math.round(237-dark*208);ctx.fillStyle=`rgb(${bg},${bg},${bg})`;ctx.fillRect(0,0,width,height);hits=[];
+const near=position+.16,far=journeyLength+10;const floor=ctx.createLinearGradient(0,height*.49,0,height);floor.addColorStop(0,dark>.5?'#292a2b':'#b5b1a9');floor.addColorStop(1,dark>.5?'#17191c':'#ded8cc');poly([project(-1.2,-.65,near),project(1.2,-.65,near),project(1.2,-.65,far),project(-1.2,-.65,far)],floor);
+for(let z=Math.ceil((journeyLength+8)/4)*4;z>=Math.floor(position/4)*4;z-=4){let n=Math.max(z,near),e=z+4;if(e<=near)continue;let t=Math.max(0,Math.min(1,z/journeyLength)),g=Math.round(244-t*204);plane(-1.2,2.1,n,-1.2,-.65,e,`rgb(${g},${g},${g-2})`);plane(1.2,2.1,n,1.2,-.65,e,`rgb(${g-9},${g-9},${g-11})`);const l=project(-1.2,-.65,e),r=project(1.2,-.65,e);if(l&&r){ctx.strokeStyle=dark>.5?'#ffffff08':'#00000008';ctx.beginPath();ctx.moveTo(l.x,l.y);ctx.lineTo(r.x,r.y);ctx.stroke();}for(const side of [-1,1]){const p=project(side*.8,2.05,z+2);if(p){ctx.fillStyle=t>.5?'#c4b594':'#fffdf4';ctx.fillRect(p.x-10,p.y,20,2);}}}
 for(let i=artworks.length-1;i>=0;i--)drawArt(artworks[i],i);
-document.body.style.color=dark>.52?'#ece7df':'#242321';document.querySelector('#intro').style.opacity=Math.max(0,1-position/5);document.querySelector('#intro').style.visibility=position>5?'hidden':'visible';document.querySelector('#end').style.display=position>45?'block':'none';document.querySelector('#chapter').textContent=dark<.2?'01 / Light':dark>.8?'03 / Shadow':'02 / The transition';document.querySelector('#bar').style.width=target/48*100+'%';document.querySelector('#percent').textContent=Math.round(target/48*100)+'% of the passage';document.querySelector('#hint').textContent=position<3?'Scroll to enter ↓':position>44?'Scroll back to revisit ↑':'Select a painting to look closer';requestAnimationFrame(tick);}requestAnimationFrame(tick);
-function showArt(i){const a=artworks[i];document.querySelector('#content').innerHTML=`<div class="detail"><img src="${a.src}" alt="${a.title}: abstract placeholder composition"><div><span class="eyebrow">${String(i+1).padStart(2,'0')} / Prototype artwork</span><h2 id="modalTitle">${a.title}</h2><p>This is a sample composition showing how your artwork will appear in the exhibition. It is not part of the artist’s collection.</p><p>Your artwork title, medium, year and story can appear here.</p><button id="next">Next artwork →</button></div></div>`;document.querySelector('#next').onclick=()=>showArt((i+1)%artworks.length);if(!modal.open)modal.showModal();}
+document.body.style.color=dark>.52?'#ece7df':'#242321';document.querySelector('#intro').style.opacity=Math.max(0,1-position/5);document.querySelector('#intro').style.visibility=position>5?'hidden':'visible';document.querySelector('#end').style.display=position>journeyLength-1.2?'block':'none';document.querySelector('#chapter').textContent=(artworks.filter(a=>a.z<=position+3).at(-1)||artworks[0]).set;document.querySelector('#bar').style.width=target/journeyLength*100+'%';document.querySelector('#percent').textContent=Math.round(target/journeyLength*100)+'% of the passage';document.querySelector('#hint').textContent=position<3?'Scroll to enter ↓':position>journeyLength-2?'Scroll back to revisit ↑':'Select a painting to look closer';requestAnimationFrame(tick);}requestAnimationFrame(tick);
+function showArt(i){const a=artworks[i];document.querySelector('#content').innerHTML=`<div class="detail"><img src="${a.src}" alt="${a.title}, painting on MDF"><div><span class="eyebrow">${a.set}</span><h2 id="modalTitle">${a.title}</h2><p>23 × 15 cm · Painted on 3 mm MDF<br>November 2019</p><p>${a.description}</p><button id="next">Next artwork →</button></div></div>`;document.querySelector('#next').onclick=()=>showArt((i+1)%artworks.length);if(!modal.open)modal.showModal();}
 function inside(x,y,p){let c=false;for(let i=0,j=p.length-1;i<p.length;j=i++){if((p[i].y>y)!=(p[j].y>y)&&x<(p[j].x-p[i].x)*(y-p[i].y)/(p[j].y-p[i].y)+p[i].x)c=!c;}return c;}
 canvas.onclick=e=>{const hit=[...hits].reverse().find(h=>inside(e.clientX,e.clientY,h.points));if(hit)showArt(hit.index)};canvas.onpointermove=e=>{canvas.style.cursor=hits.some(h=>inside(e.clientX,e.clientY,h.points))?'pointer':'default'};
-document.querySelector('#all').onclick=()=>{document.querySelector('#content').innerHTML='<div class="catalog"><span class="eyebrow">The collection · Sample works</span><h2 id="modalTitle">A closer look</h2><div class="grid">'+artworks.map((a,i)=>`<button class="tile" data-index="${i}"><img src="${a.src}" alt="Abstract sample ${i+1}"><span>${String(i+1).padStart(2,'0')} — ${a.title}</span></button>`).join('')+'</div></div>';document.querySelectorAll('.tile').forEach(b=>b.onclick=()=>showArt(+b.dataset.index));modal.showModal()};document.querySelector('#close').onclick=()=>modal.close();modal.onclick=e=>{if(e.target===modal){const r=modal.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)modal.close()}};
+document.querySelector('#all').onclick=()=>{document.querySelector('#content').innerHTML='<div class="catalog"><span class="eyebrow">The collection · 18 paintings</span><h2 id="modalTitle">A closer look</h2><div class="grid">'+artworks.map((a,i)=>`<button class="tile" data-index="${i}"><img src="${a.src}" alt="${a.title}, painting on MDF"><span>${a.set}<br>${String(i+1).padStart(2,'0')} — ${a.title}</span></button>`).join('')+'</div></div>';document.querySelectorAll('.tile').forEach(b=>b.onclick=()=>showArt(+b.dataset.index));modal.showModal()};document.querySelector('#close').onclick=()=>modal.close();modal.onclick=e=>{if(e.target===modal){const r=modal.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)modal.close()}};
 document.querySelector('#enter').onclick=()=>scrollTo({top:(document.documentElement.scrollHeight-height)*.13,behavior:reduced?'instant':'smooth'});document.querySelector('#restart').onclick=()=>scrollTo({top:0,behavior:reduced?'instant':'smooth'});
 </script></body></html>
