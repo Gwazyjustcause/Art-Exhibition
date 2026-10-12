@@ -1,5 +1,5 @@
-import {artworks,stops,journeyLength} from './collection.js?v=size-corrections-1';
-import {t,detailHTML,catalogHTML,setCaption,percentage} from './language.js?v=size-corrections-1';
+import {artworks,stops,journeyLength} from './collection.js?v=aligned-sets-1';
+import {t,detailHTML,catalogHTML,setCaption,percentage} from './language.js?v=aligned-sets-1';
 
 'use strict';
 // Replace image with a relative file path (e.g. artworks/my-painting.jpg) to exhibit your own work.
