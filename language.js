@@ -14,7 +14,7 @@ const translations={
 'Breathing':['A respirar','Uma figura jaz no chão, sob um pé, com o rosto sem expressão.'],
 'Adios':['Adeus','Um homem e um cavalo ocupam uma paisagem deserta. A cena admite duas leituras: a vida a confortar a morte, ou a aceitação daquilo que os espera.'],
 'Miragem':['Miragem','Uma figura ergue-se da terra e incendeia a paisagem. À medida que cresce, o verde pálido nas margens desvanece-se e o mundo à sua volta perde a vida.'],
-'Lorde':['Senhor','Uma reflexão sobre a Igreja cristã.'],
+'Lorde':['Lorde','Uma reflexão sobre a Igreja cristã.'],
 'Afternoon Noise':['Ruído da tarde','Um verde doentio e um amarelo intrusivo envolvem um homem sentado, que cobre o rosto. As cores tornam a cena inquieta e exaustiva.'],
 'Solitudinem':['Solidão','«Nunca pedi conforto. Não me toques como se te importasses.» As figuras reúnem-se num espaço que continua vazio.'],
 "We'ak":['Fraco','Figuras idênticas rodeiam uma única pessoa que se distingue das restantes. Por mais cópias que existam, nenhuma substitui o original.'],
