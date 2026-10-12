@@ -1,5 +1,5 @@
-import {artworks,stops,journeyLength} from './collection.js?v=all-collection-2';
-import {t,detailHTML,catalogHTML,setCaption,percentage} from './language.js?v=all-collection-2';
+import {artworks,stops,journeyLength} from './collection.js?v=size-corrections-1';
+import {t,detailHTML,catalogHTML,setCaption,percentage} from './language.js?v=size-corrections-1';
 
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.min.js';
 
