@@ -88,11 +88,27 @@ body:not(.in-gallery) header button{border-color:#fff9ee}
 .hero h1{font-size:clamp(52px,7.5vw,96px)}
 @media(max-width:600px){.hero h1{font-size:clamp(46px,11vw,68px);line-height:1.06}}
 @media(max-height:700px){.hero h1{font-size:clamp(46px,6.5vw,78px)}}
+
+.language-switch{display:inline-flex;gap:10px;margin-left:24px;align-items:center}
+header .language-switch button{margin:0;padding:8px 2px;border:0;opacity:.55;font-size:10px;letter-spacing:1px}
+header .language-switch button[aria-pressed="true"]{opacity:1;border-bottom:1px solid currentColor}
+.title-translation{display:block;font:normal 13px/1.5 Arial,sans-serif;letter-spacing:0;opacity:.8;margin-top:5px;text-transform:none}
+#exhibition-translation .title-translation{font:italic 20px Georgia,serif;color:#fff9ee;margin:-12px 0 20px;opacity:1}
+.language-note{font:12px/1.7 Arial,sans-serif!important;border-left:2px solid #a49a87;padding-left:14px;color:#5e594e}
+.opening-language-note{max-width:450px;margin:18px auto 0;border:0;padding:0;color:#fff9ee;line-height:1.65;font-size:11px!important;text-shadow:0 1px 4px #000b}
+.english-original{margin:20px 0;font-size:12px;color:#686052}
+.english-original summary{cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.detail>div>.title-translation{font:italic 21px Georgia,serif;margin:-12px 0 24px}
+.detail .eyebrow .title-translation{font-size:11px;letter-spacing:0}
+.tile .title-translation{padding-top:0;font:12px Arial,sans-serif}
+.catalog-set h3 .title-translation{font-size:14px}
+#chapter .title-translation{font-size:10px;margin-top:3px}
+@media(max-width:600px){header nav{display:flex;align-items:center}header #all{font-size:8px;margin-left:0;letter-spacing:.7px}.language-switch{margin-left:14px;gap:8px}header .language-switch button{font-size:9px}#exhibition-translation .title-translation{font-size:17px;margin:0 0 14px}.opening-language-note{max-width:330px;font-size:9px!important;margin-top:12px}.hero:has(.opening-language-note:not([hidden])){top:49%}.hero .opening-lead{margin-bottom:6px}}
 </style></head><body>
 <canvas id="scene" aria-label="Virtual gallery corridor. Scroll to move, or use the All artworks button to explore accessible artwork details."></canvas>
-<header><span class="brand">Gabriela<br>Vicente Ferreira</span><nav><a href="https://gwazyjustcause.github.io/Portefolio/">Artist portfolio ↗</a> &nbsp; <button id="all">All artworks</button></nav></header>
-<section class="hero" id="intro"><div class="opening-content"><span class="eyebrow">A virtual exhibition</span><h1>What Remains<br><em>Unsaid</em></h1><p class="opening-lead">Three series. Eighteen paintings.</p><p class="opening-copy">Follow the corridor. Discover the paintings.<br>Select a piece to read its story.</p><button id="enter">Enter the exhibition <span aria-hidden="true">→</span></button></div></section>
-<section class="end" id="end"><span class="eyebrow">End of the exhibition</span><h2>Thank you<br>for looking.</h2><p>Paintings by Gabriela Vicente Ferreira.<br>Eighteen works across three series.</p><p><a href="https://gwazyjustcause.github.io/Portefolio/">Visit the artist’s portfolio ↗</a></p><button id="restart">Return to the beginning ↑</button></section>
+<header><span class="brand">Gabriela<br>Vicente Ferreira</span><nav><a href="https://gwazyjustcause.github.io/Portefolio/" data-i18n="portfolio">Artist portfolio ↗</a> &nbsp; <button id="all" data-i18n="all">All artworks</button><span class="language-switch" role="group" aria-label="Language / Idioma"><button data-language="en" aria-label="English" aria-pressed="true">EN</button><button data-language="pt" aria-label="Português" aria-pressed="false">PT</button></span></nav></header>
+<section class="hero" id="intro"><div class="opening-content"><span class="eyebrow" data-i18n="exhibition">A virtual exhibition</span><h1>What Remains<br><em>Unsaid</em></h1><div id="exhibition-translation"></div><p class="opening-lead" data-i18n="lead">Three series. Eighteen paintings.</p><p class="opening-copy" data-i18n="copy">Follow the corridor. Discover the paintings.<br>Select a piece to read its story.</p><p id="language-note" class="language-note opening-language-note" hidden></p><button id="enter" data-i18n="enter">Enter the exhibition <span aria-hidden="true">→</span></button></div></section>
+<section class="end" id="end"><span class="eyebrow" data-i18n="end">End of the exhibition</span><h2 data-i18n="thanks">Thank you<br>for looking.</h2><p data-i18n="endcopy">Paintings by Gabriela Vicente Ferreira.<br>Eighteen works across three series.</p><p><a href="https://gwazyjustcause.github.io/Portefolio/" data-i18n="visit">Visit the artist’s portfolio ↗</a></p><button id="restart" data-i18n="restart">Return to the beginning ↑</button></section>
 <div class="hint" id="hint">Scroll to enter ↓</div><footer class="bottom"><span id="chapter">01 / Light</span><div class="progress"><i id="bar"></i></div><span id="percent">0% of the passage</span></footer>
 <div class="spacer"></div><dialog id="modal" aria-labelledby="modalTitle"><button class="close" id="close" aria-label="Close artwork view">✕</button><div id="content"></div></dialog>
 <script type="module" src="./gallery-loader.js"></script></body></html>
