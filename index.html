@@ -113,6 +113,13 @@ canvas#scene{height:calc(100dvh - var(--caption-space))}
 .hint{bottom:calc(var(--caption-space) - 26px);color:#514c42!important;z-index:3}
 #percent{white-space:nowrap}
 @media(max-width:600px){:root{--caption-space:120px}.bottom{padding:44px 7% 17px;gap:12px}#chapter{font-size:17px;max-width:70%}#chapter .title-translation{font-size:10px}#percent{font-size:8px}.hint{font-size:7px;letter-spacing:.6px}}
+
+/* Continue the gallery visually beneath transparent captions. */
+body{background:#33383a}
+canvas#scene{height:100dvh}
+.bottom{background:transparent;border-top:0;color:inherit!important}
+.hint{color:inherit!important}
+#chapter .title-translation{color:inherit}
 </style></head><body>
 <canvas id="scene" aria-label="Virtual gallery corridor. Scroll to move, or use the All artworks button to explore accessible artwork details."></canvas>
 <header><span class="brand">Gabriela<br>Vicente Ferreira</span><nav><a href="https://gwazyjustcause.github.io/Portefolio/" data-i18n="portfolio">Portefólio da artista ↗</a> &nbsp; <button id="all" data-i18n="all">Todas as obras</button><span class="language-switch" role="group" aria-label="Language / Idioma"><button data-language="en" aria-label="English" aria-pressed="false">EN</button><button data-language="pt" aria-label="Português" aria-pressed="true">PT</button></span></nav></header>
