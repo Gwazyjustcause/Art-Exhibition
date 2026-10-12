@@ -1,5 +1,5 @@
-import {artworks,stops,journeyLength} from './collection.js?v=all-collection-1';
-import {t,detailHTML,catalogHTML,setCaption,percentage} from './language.js?v=all-collection-1';
+import {artworks,stops,journeyLength} from './collection.js?v=all-collection-2';
+import {t,detailHTML,catalogHTML,setCaption,percentage} from './language.js?v=all-collection-2';
 
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.min.js';
 
@@ -37,7 +37,7 @@ function resize(){const viewWidth=canvas.clientWidth,viewHeight=canvas.clientHei
 function animate(time){const dt=Math.min((time-last)/1000,.05);last=time;if(!modal.open){target=scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)*journeyLength;progress=reduced?target:progress+(target-progress)*(1-Math.exp(-dt*6));}const stop=stops.find(g=>progress>=g.z-1&&progress<=g.z+.5);cameraZ=progress;yaw=0;
 if(stop){if(progress<stop.z-1/3){const t=smooth((progress-stop.z+1)/(1-1/3));cameraZ=progress+(stop.z-progress)*t;yaw=stop.side*Math.PI/2*t;}else if(progress<=stop.z+1/3){cameraZ=stop.z;yaw=stop.side*Math.PI/2;}else{const t=smooth((progress-stop.z-1/3)/(.5-1/3));cameraZ=stop.z+(progress-stop.z)*t;yaw=stop.side*Math.PI/2*(1-t);}}
 camera.position.set(0,1.7,cameraZ);camera.lookAt(Math.sin(yaw),1.7,cameraZ+Math.cos(yaw)); // fit the complete composition, including its title
-camera.fov=stop&&Math.abs(yaw)>1.5?Math.max(12,Math.min(85,2*Math.atan(Math.max(stop.rise/.7,stop.span/(camera.aspect*.75))/2/1.2)*180/Math.PI)):48;if(innerWidth<600)camera.setViewOffset(canvas.clientWidth,canvas.clientHeight,0,20,canvas.clientWidth,canvas.clientHeight);else camera.clearViewOffset();camera.updateProjectionMatrix();
+const focusFov=stop?Math.max(12,Math.min(85,2*Math.atan(Math.max(stop.rise/.7,stop.span/(camera.aspect*.75))/2/1.2)*180/Math.PI)):48;camera.fov=48+(focusFov-48)*smooth(Math.abs(yaw)/(Math.PI/2));if(innerWidth<600)camera.setViewOffset(canvas.clientWidth,canvas.clientHeight,0,20,canvas.clientWidth,canvas.clientHeight);else camera.clearViewOffset();camera.updateProjectionMatrix();
 const dark=progress/journeyLength;document.body.style.color=dark>.43?'#f4ede2':'#292823';document.body.classList.toggle('in-gallery',progress>=.25);document.querySelector('#intro').style.opacity=progress<.25?'1':'0';document.querySelector('#intro').style.visibility=progress>=.25?'hidden':'visible';document.querySelector('#end').style.display=progress>journeyLength-1.2?'block':'none';document.querySelector('#chapter').innerHTML=setCaption((stop||stops.reduce((a,b)=>Math.abs(a.z-progress)<Math.abs(b.z-progress)?a:b)).name);document.querySelector('#bar').style.width=target/journeyLength*100+'%';document.querySelector('#percent').textContent=percentage(target/journeyLength*100);document.querySelector('#hint').textContent=progress<3?t('begin'):progress>journeyLength-2?t('back'):Math.abs(yaw)>1.5?t('select'):t('follow');updateDisplay(cameraZ);renderer.render(scene,camera);requestAnimationFrame(animate);}requestAnimationFrame(animate);
 function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 let openArtwork=null,catalogOpen=false;

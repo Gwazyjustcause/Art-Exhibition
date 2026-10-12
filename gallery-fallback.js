@@ -1,5 +1,5 @@
-import {artworks,stops,journeyLength} from './collection.js?v=all-collection-1';
-import {t,detailHTML,catalogHTML,setCaption,percentage} from './language.js?v=all-collection-1';
+import {artworks,stops,journeyLength} from './collection.js?v=all-collection-2';
+import {t,detailHTML,catalogHTML,setCaption,percentage} from './language.js?v=all-collection-2';
 
 'use strict';
 // Replace image with a relative file path (e.g. artworks/my-painting.jpg) to exhibit your own work.
@@ -15,7 +15,7 @@ artworks.forEach((a,i)=>{a.src=encodeURI(a.image);a.texture=new Image();});
 function resize(){width=canvas.clientWidth;height=canvas.clientHeight;dpr=Math.min(devicePixelRatio||1,2);canvas.width=width*dpr;canvas.height=height*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}addEventListener('resize',resize);resize();
 // Camera at standing eye level, 1.7 units above the corridor floor.
 const cameraHeight=1.05;
-function project(x,y,z){const dz=z-cameraZ,depth=x*Math.sin(cameraYaw)+dz*Math.cos(cameraYaw);if(depth<=.15)return null;const horizontal=x*Math.cos(cameraYaw)-dz*Math.sin(cameraYaw);const focused=Math.abs(cameraYaw)>1.5?setStops.reduce((a,b)=>Math.abs(a.z-cameraZ)<Math.abs(b.z-cameraZ)?a:b):null;const f=focused?Math.min(width*.75/Math.max(focused.span,.35),height*.7/Math.max(focused.rise,.35))*1.2:Math.min(width*.82,height*.9);return {x:width/2+horizontal*f/depth,y:height*.49-(width<600?20:0)-(y-cameraHeight)*f/depth};}
+function project(x,y,z){const dz=z-cameraZ,depth=x*Math.sin(cameraYaw)+dz*Math.cos(cameraYaw);if(depth<=.15)return null;const horizontal=x*Math.cos(cameraYaw)-dz*Math.sin(cameraYaw);const focused=Math.abs(cameraYaw)>.001?setStops.reduce((a,b)=>Math.abs(a.z-cameraZ)<Math.abs(b.z-cameraZ)?a:b):null;const base=Math.min(width*.82,height*.9),focus=focused?Math.min(width*.75/Math.max(focused.span,.35),height*.7/Math.max(focused.rise,.35))*1.2:base;const f=base+(focus-base)*smoothstep(Math.abs(cameraYaw)/(Math.PI/2));return {x:width/2+horizontal*f/depth,y:height*.49-(width<600?20:0)-(y-cameraHeight)*f/depth};}
 function poly(points,fill){if(points.some(p=>!p))return;ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fillStyle=fill;ctx.fill();}
 function plane(x1,y1,z1,x2,y2,z2,fill){poly([project(x1,y1,z1),project(x2,y1,z2),project(x2,y2,z2),project(x1,y2,z1)],fill)}
 function drawArt(a,i){const z=a.z;if(Math.abs(z-cameraZ)>6)return;if(!a.texture.src)a.texture.src=a.src;const x=a.side*1.2,top=a.centerY+a.height/2,bottom=a.centerY-a.height/2;const p=[project(x,top,z+a.side*a.width/2),project(x,top,z-a.side*a.width/2),project(x,bottom,z-a.side*a.width/2),project(x,bottom,z+a.side*a.width/2)];if(p.some(v=>!v))return;
