@@ -1,4 +1,4 @@
-import {t,detailHTML,catalogHTML,setCaption,percentage} from './language.js';
+import {t,detailHTML,catalogHTML,setCaption,percentage} from './language.js?v=pt-default-2';
 
 'use strict';
 // Replace image with a relative file path (e.g. artworks/my-painting.jpg) to exhibit your own work.
