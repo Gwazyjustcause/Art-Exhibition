@@ -1,241 +1,130 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#eeeae2"><meta name="description" content="A scroll-controlled virtual art exhibition. Travel from light into darkness and explore artwork along the walls."><title>Paintings — Art Exhibition</title>
+<html lang="pt-PT"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#eeeae2"><meta name="description" content="Explore the paintings of Gabriela Vicente Ferreira in a virtual gallery. Discover three series, view each painting and read its story."><title>What Remains Unsaid — Gabriela Vicente Ferreira</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#eeeae2;color:#242321;font-family:Arial,sans-serif}canvas{position:fixed;inset:0;width:100%;height:100%;touch-action:pan-y}header{position:fixed;z-index:2;top:0;left:0;width:100%;padding:28px 4%;display:flex;justify-content:space-between;align-items:center;gap:20px}header a{color:inherit;text-decoration:none;font-size:11px;letter-spacing:2px}button{font:inherit;cursor:pointer;color:inherit;border:1px solid currentColor;background:transparent;padding:11px 17px;border-radius:30px}button:hover{background:#8882}button:focus-visible,a:focus-visible{outline:3px solid #bd694d;outline-offset:5px}.brand{font-size:12px;letter-spacing:3px;text-transform:uppercase}.hero{position:fixed;z-index:1;left:50%;top:43%;width:min(650px,85%);transform:translate(-50%,-50%);text-align:center;pointer-events:none;background:radial-gradient(ellipse,#eeeae2eb 20%,#eeeae299 55%,transparent 74%);padding:30px 0}.eyebrow{font-size:10px;letter-spacing:4px;text-transform:uppercase}h1{font:normal clamp(46px,7vw,90px)/.95 Georgia,serif;letter-spacing:-3px;margin:24px 0}h1 em{font-weight:normal} .hero p{font-size:13px;line-height:1.8}.hero button{pointer-events:auto;margin-top:20px}.bottom{position:fixed;z-index:2;bottom:25px;left:4%;right:4%;display:flex;align-items:center;justify-content:space-between;gap:20px;font-size:10px;letter-spacing:2px;text-transform:uppercase}.progress{height:2px;background:#8885;flex:1;max-width:220px}.progress i{display:block;height:100%;background:currentColor;width:0}.hint{position:fixed;z-index:2;bottom:75px;width:100%;text-align:center;font-size:12px;pointer-events:none}.end{position:fixed;z-index:1;inset:25% 15%;text-align:center;display:none}.end h2{font:normal clamp(40px,6vw,75px) Georgia,serif}.end a{color:inherit}.spacer{height:1000vh;pointer-events:none}dialog{border:0;padding:0;background:#f4f1eb;color:#242321;width:min(1000px,92vw);max-height:88dvh;overflow:auto}dialog::backdrop{background:#111c;backdrop-filter:blur(8px)}.close{position:sticky;float:right;right:15px;top:15px;z-index:3;background:#f4f1eb}.detail{padding:45px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center}.detail img{width:100%;max-height:65vh;object-fit:contain}.detail h2,.catalog h2{font:normal 38px Georgia,serif}.detail p{font-size:14px;line-height:1.8}.catalog{padding:40px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}.tile{padding:0;border:0;border-radius:0;text-align:left}.tile img{width:100%;aspect-ratio:23/15;object-fit:contain}.tile span{display:block;padding:12px 0;font-size:12px}.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}@media(max-width:600px){header{padding:20px 5%}.brand{max-width:140px;line-height:1.6;font-size:10px}header a{display:none}.detail{grid-template-columns:1fr;padding:30px;gap:12px}.grid{grid-template-columns:repeat(2,1fr)}.catalog{padding:25px}.bottom{font-size:8px}.progress{max-width:90px}h1{letter-spacing:-2px}.end{inset:28% 8%}}
+
+body{font-family:'Helvetica Neue',Arial,sans-serif}
+header{padding:28px 4.5%;background:linear-gradient(#191b1d20,transparent)}
+.brand{font-size:10px;line-height:1.8;letter-spacing:3.5px}
+header button{font-size:11px;letter-spacing:1.3px;text-transform:uppercase;padding:12px 20px;border-color:#8c887d80;background:#efebe416;backdrop-filter:blur(8px)}
+.hero{width:min(760px,90%);background:radial-gradient(ellipse,#eee7dad9 10%,#eee7da55 53%,transparent 74%);padding:65px 20px}
+h1{font-size:clamp(50px,7vw,94px);line-height:1.04;letter-spacing:-3px}
+.hero .eyebrow{font-size:9px;letter-spacing:4px}
+.hero p{font-family:Georgia,serif;font-size:16px;line-height:1.85}
+.hero button{font-size:10px;letter-spacing:2px;text-transform:uppercase;border-radius:0;border:0;border-bottom:1px solid #29282380;padding:12px 0}
+.hint{font-size:9px;letter-spacing:2.5px}
+.bottom{letter-spacing:1.6px;font-size:9px}
+dialog{background:#eee9df;box-shadow:0 35px 120px #0008;border-radius:2px}
+dialog::backdrop{background:#101418c9;backdrop-filter:blur(12px)}
+.detail{padding:65px 50px;gap:45px;grid-template-columns:1.25fr 1fr}
+.detail img{box-shadow:4px 8px 20px #25242033}
+.detail h2{font-size:48px;letter-spacing:-1px;margin:20px 0 24px}
+.detail .eyebrow{font-size:9px;letter-spacing:2.6px;line-height:1.8}
+.detail .art-meta{font-size:10px;letter-spacing:1px;line-height:1.9;color:#777164;padding-bottom:22px;border-bottom:1px solid #b9b09f}
+.detail .art-story{font:17px/1.75 Georgia,serif;margin:25px 0}
+.detail #next{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;border-radius:0;border:0;border-bottom:1px solid #9e9689;padding:10px 0}
+.catalog-set{margin:45px 0}
+.catalog-set h3{font:normal 28px Georgia,serif;padding-bottom:20px;border-bottom:1px solid #c8bfae}
+.grid{gap:30px}
+.tile img{box-shadow:2px 5px 10px #29242020}
+.tile span{font:16px Georgia,serif;padding-top:14px}
+@media(max-width:600px){.detail{padding:35px 25px;grid-template-columns:1fr;gap:25px}.detail h2{font-size:38px}.hero{padding:35px 12px}.hero p{font-size:14px}.catalog-set h3{font-size:24px}}
+
+/* Editorial text layout: solid entrance; gallery captions remain outside the artwork. */
+.hero{inset:0;left:0;top:0;width:100%;height:100dvh;transform:none;background:#202a2b;color:#f2ecdf;z-index:3;padding:120px 8% 65px;text-align:left;display:flex;align-items:center;overflow:auto;pointer-events:auto}
+.opening-content{position:relative;z-index:1;max-width:780px}
+.hero h1{font:normal clamp(54px,7.5vw,108px)/1.02 Georgia,serif;letter-spacing:-4px;margin:30px 0}
+.hero h1 em{color:#c2ae86}
+.hero .eyebrow{font-size:9px;line-height:1.8;color:#c8c7b9}
+.hero .opening-lead{font:20px/1.6 Georgia,serif;margin:25px 0 8px}
+.hero .opening-copy{font:13px/1.85 Arial,sans-serif;max-width:380px;color:#c3c9c4}
+.hero #enter{margin:25px 0 0;padding:15px 0;border-bottom:1px solid #c2ae86;color:#f2ecdf;min-width:190px;display:flex;justify-content:space-between;font:10px Arial,sans-serif;letter-spacing:2px}
+.opening-notes{display:flex;gap:55px;margin-top:45px;border-top:1px solid #ffffff24;padding-top:20px;font:10px/1.8 Arial,sans-serif;color:#9faea7;letter-spacing:.5px}
+.opening-index{position:absolute;right:5%;bottom:2%;font:normal clamp(100px,22vw,280px) Georgia,serif;color:#ffffff05;pointer-events:none}
+header{z-index:4;background:none}
+body:not(.in-gallery) header{color:#f2ecdf}
+body:not(.in-gallery) .bottom,body:not(.in-gallery) .hint{visibility:hidden}
+header nav a{font-size:9px;letter-spacing:1px}
+header button{border-radius:0;background:none;backdrop-filter:none;border:0;border-bottom:1px solid currentColor;padding:9px 0;margin-left:22px}
+.bottom{bottom:25px;align-items:flex-end;text-transform:none}
+#chapter{font:normal clamp(16px,2vw,24px) Georgia,serif;letter-spacing:0;max-width:50%}
+#percent{font-size:9px;letter-spacing:1px}
+.progress{max-width:140px;opacity:.6}
+.hint{bottom:80px;font-size:8px;letter-spacing:1.5px}
+.end{inset:15% 8% 20%;padding:50px;background:#202a2b;color:#f2ecdf;display:none}
+.end h2{letter-spacing:-2px}
+.end p{font:15px/1.8 Georgia,serif;color:#c8c7b9}
+.detail{padding:70px 50px;gap:45px}
+.detail h2{font-size:48px;line-height:1.1}
+.detail p{font:16px/1.85 Georgia,serif}
+.detail .art-meta{font:10px/1.9 Arial,sans-serif}
+.catalog h2{font-size:44px}
+@media(max-width:600px){.hero{padding:105px 7% 45px;align-items:flex-start}.hero h1{font-size:58px;letter-spacing:-2px;margin:35px 0 22px}.hero .opening-lead{font-size:17px}.hero .opening-copy{font-size:12px}.opening-notes{gap:22px;font-size:9px;margin-top:30px}header{padding:18px 7%}.brand{font-size:8px}.bottom{left:7%;right:7%;gap:12px}.progress{display:none}#chapter{max-width:65%;font-size:16px}.hint{bottom:68px;font-size:7px}.end{inset:15% 7% 20%;padding:30px 20px}.detail{padding:50px 25px;gap:22px}.detail h2{font-size:36px}}
+@media(max-height:700px){.hero{padding-top:85px}.hero h1{font-size:clamp(40px,6vw,72px);margin:20px 0}.opening-notes{margin-top:22px}.hero #enter{margin-top:12px}}
+
+/* The artist's introduction belongs inside the gallery view. */
+.hero{inset:auto;left:50%;top:48%;transform:translate(-50%,-50%);width:min(940px,92%);height:auto;max-height:80dvh;padding:35px 15px;text-align:center;display:block;background:none;color:#272925;pointer-events:none;overflow:visible}
+.opening-content{max-width:none}
+.hero h1{font:normal clamp(48px,7vw,90px)/1.02 Georgia,serif;letter-spacing:-3px;margin:20px 0 28px;text-shadow:0 1px 12px #eee9df70}
+.hero h1 em{color:inherit}
+.hero .eyebrow{font-size:10px;letter-spacing:4px;color:#45473f}
+.hero .opening-lead{font:17px/1.7 Georgia,serif;margin:0 0 10px}
+.hero .opening-copy{font:12px/1.9 Arial,sans-serif;max-width:none;color:#41463f;margin:0}
+.hero #enter{pointer-events:auto;display:inline-flex;gap:30px;min-width:210px;margin:26px auto 0;padding:12px 0;border-color:#45473f;color:#272925}
+body:not(.in-gallery) header{color:#272925}
+.brand{letter-spacing:2px;line-height:1.6}
+@media(max-width:600px){.hero{top:47%;padding:15px 8px;width:94%}.hero h1{font-size:clamp(40px,10vw,60px);letter-spacing:-1.5px;margin:22px 0}.hero .opening-lead{font-size:15px}.hero .opening-copy{font-size:11px}.hero .eyebrow{font-size:8px;letter-spacing:3px}.hero #enter{font-size:9px;margin-top:22px}.brand{font-size:8px}}
+@media(max-height:700px){.hero{top:48%;padding:10px}.hero h1{font-size:clamp(42px,6vw,72px);margin:15px 0}.hero #enter{margin-top:18px}}
+
+/* A consistent contrast layer over the corridor, without a text panel. */
+body::before{content:"";position:fixed;inset:0;z-index:1;background:linear-gradient(180deg,rgba(6,13,17,.52),rgba(6,13,17,.62) 45%,rgba(6,13,17,.48));pointer-events:none;opacity:1}
+body.in-gallery::before{opacity:0}
+.hero,.hero h1,.hero h1 em,.hero .eyebrow,.hero .opening-lead,.hero .opening-copy,.hero #enter{color:#fff9ee}
+.hero h1{text-shadow:0 2px 8px #0008}
+.hero .eyebrow,.hero .opening-copy{color:#f0eee6;text-shadow:0 1px 4px #000a}
+.hero #enter{border-color:#fff9ee;min-width:225px}
+body:not(.in-gallery) header{color:#fff9ee;text-shadow:0 1px 4px #000b}
+body:not(.in-gallery) header button{border-color:#fff9ee}
+.hero h1{font-size:clamp(52px,7.5vw,96px)}
+@media(max-width:600px){.hero h1{font-size:clamp(46px,11vw,68px);line-height:1.06}}
+@media(max-height:700px){.hero h1{font-size:clamp(46px,6.5vw,78px)}}
+
+.language-switch{display:inline-flex;gap:10px;margin-left:24px;align-items:center}
+header .language-switch button{margin:0;padding:8px 2px;border:0;opacity:.55;font-size:10px;letter-spacing:1px}
+header .language-switch button[aria-pressed="true"]{opacity:1;border-bottom:1px solid currentColor}
+.title-translation{display:block;font:normal 13px/1.5 Arial,sans-serif;letter-spacing:0;opacity:.8;margin-top:5px;text-transform:none}
+#exhibition-translation .title-translation{font:italic 20px Georgia,serif;color:#fff9ee;margin:-12px 0 20px;opacity:1}
+.language-note{font:12px/1.7 Arial,sans-serif!important;border-left:2px solid #a49a87;padding-left:14px;color:#5e594e}
+.opening-language-note{max-width:450px;margin:18px auto 0;border:0;padding:0;color:#fff9ee;line-height:1.65;font-size:11px!important;text-shadow:0 1px 4px #000b}
+.english-original{margin:20px 0;font-size:12px;color:#686052}
+.english-original summary{cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.detail>div>.title-translation{font:italic 21px Georgia,serif;margin:-12px 0 24px}
+.detail .eyebrow .title-translation{font-size:11px;letter-spacing:0}
+.tile .title-translation{padding-top:0;font:12px Arial,sans-serif}
+.catalog-set h3 .title-translation{font-size:14px}
+#chapter .title-translation{font-size:10px;margin-top:3px}
+@media(max-width:600px){header nav{display:flex;align-items:center}header #all{font-size:8px;margin-left:0;letter-spacing:.7px}.language-switch{margin-left:14px;gap:8px}header .language-switch button{font-size:9px}#exhibition-translation .title-translation{font-size:17px;margin:0 0 14px}.opening-language-note{max-width:330px;font-size:9px!important;margin-top:12px}.hero:has(.opening-language-note:not([hidden])){top:49%}.hero .opening-lead{margin-bottom:6px}}
+.physical-paintings{max-width:460px;margin:15px auto 0;font:12px/1.7 Arial,sans-serif!important;color:#fff9ee;text-shadow:0 1px 4px #000b}.opening-language-note{font-size:10px!important;max-width:460px;margin-top:12px}@media(max-width:600px){.physical-paintings{font-size:10px!important;max-width:330px;margin-top:12px}.opening-language-note{font-size:9px!important}.hero h1{font-size:clamp(40px,10vw,60px);margin:16px 0 20px}}
+:root{--caption-space:108px}
+canvas#scene{height:calc(100dvh - var(--caption-space))}
+.bottom{left:0;right:0;bottom:0;height:var(--caption-space);padding:44px 4.5% 20px;background:#eee9df;color:#292823!important;border-top:1px solid #bdb5a633;z-index:2;align-items:center;gap:25px}
+#chapter{max-width:65%;line-height:1.15}
+#chapter .title-translation{color:#514c42;opacity:1}
+.hint{bottom:calc(var(--caption-space) - 26px);color:#514c42!important;z-index:3}
+#percent{white-space:nowrap}
+@media(max-width:600px){:root{--caption-space:120px}.bottom{padding:44px 7% 17px;gap:12px}#chapter{font-size:17px;max-width:70%}#chapter .title-translation{font-size:10px}#percent{font-size:8px}.hint{font-size:7px;letter-spacing:.6px}}
+
+/* Continue the gallery visually beneath transparent captions. */
+body{background:#33383a}
+canvas#scene{height:100dvh}
+.bottom{background:transparent;border-top:0;color:inherit!important}
+.hint{color:inherit!important}
+#chapter .title-translation{color:inherit}
 </style></head><body>
 <canvas id="scene" aria-label="Virtual gallery corridor. Scroll to move, or use the All artworks button to explore accessible artwork details."></canvas>
-<header><span class="brand">An exhibition<br>in motion</span><nav><a href="https://gwazyjustcause.github.io/Portefolio/">Artist portfolio ↗</a> &nbsp; <button id="all">All artworks</button></nav></header>
-<section class="hero" id="intro"><span class="eyebrow">Paintings on MDF · November 2019</span><h1>A passage<br>through <em>feeling</em></h1><p>A quiet passage from light into darkness.<br>Scroll to wander. Select an artwork to look closer.</p><button id="enter">Enter the exhibition ↓</button></section>
-<section class="end" id="end"><span class="eyebrow">The end of the passage</span><h2>Art deserves<br>to be seen.</h2><p>18 paintings · Three sets · November 2019.</p><p><a href="https://gwazyjustcause.github.io/Portefolio/">Explore the artist’s portfolio ↗</a></p><button id="restart">Walk again ↑</button></section>
+<header><span class="brand">Gabriela<br>Vicente Ferreira</span><nav><a href="https://gwazyjustcause.github.io/Portefolio/" data-i18n="portfolio">Portefólio da artista ↗</a> &nbsp; <button id="all" data-i18n="all">Todas as obras</button><span class="language-switch" role="group" aria-label="Language / Idioma"><button data-language="en" aria-label="English" aria-pressed="false">EN</button><button data-language="pt" aria-label="Português" aria-pressed="true">PT</button></span></nav></header>
+<section class="hero" id="intro"><div class="opening-content"><span class="eyebrow" data-i18n="exhibition">Uma exposição virtual</span><h1>What Remains<br><em>Unsaid</em></h1><div id="exhibition-translation"><span class="title-translation" lang="pt-PT">O que fica por dizer</span></div><p class="opening-lead" data-i18n="lead">Três séries. Dezoito pinturas.</p><p class="opening-copy" data-i18n="copy">Percorre o corredor e descobre as pinturas.<br>Seleciona uma obra para conhecer a sua história.</p><p class="physical-paintings" data-i18n="physical">Estas são pinturas físicas sobre MDF. Estou disponível para as apresentar numa exposição presencial.</p><p id="language-note" class="language-note opening-language-note" hidden></p><button id="enter" data-i18n="enter">Entrar na exposição <span aria-hidden="true">→</span></button></div></section>
+<section class="end" id="end"><span class="eyebrow" data-i18n="end">End of the exhibition</span><h2 data-i18n="thanks">Thank you<br>for looking.</h2><p data-i18n="endcopy">Paintings by Gabriela Vicente Ferreira.<br>Eighteen works across three series.</p><p><a href="https://gwazyjustcause.github.io/Portefolio/" data-i18n="visit">Visit the artist’s portfolio ↗</a></p><button id="restart" data-i18n="restart">Return to the beginning ↑</button></section>
 <div class="hint" id="hint">Scroll to enter ↓</div><footer class="bottom"><span id="chapter">01 / Light</span><div class="progress"><i id="bar"></i></div><span id="percent">0% of the passage</span></footer>
 <div class="spacer"></div><dialog id="modal" aria-labelledby="modalTitle"><button class="close" id="close" aria-label="Close artwork view">✕</button><div id="content"></div></dialog>
-<script>
-'use strict';
-// Replace image with a relative file path (e.g. artworks/my-painting.jpg) to exhibit your own work.
-const artworks = [
-  {
-    "title": "il sacco",
-    "set": "When Did We Say Goodbye",
-    "group": 0,
-    "image": "assets/1- November19/WDWSG - Nov19/il sacco.jpg",
-    "description": "Within a brown dirtied ground there it is, the forgotten bag, he lays within, alive or dead.",
-    "z": 5,
-    "side": 1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Crusoe",
-    "set": "When Did We Say Goodbye",
-    "group": 0,
-    "image": "assets/1- November19/WDWSG - Nov19/Crusoe.jpg",
-    "description": "Robinson Crusoe, the man that spends nearly 30 years stoke on a remote island, alone, at some point we become like him, sometimes it becomes our reality.",
-    "z": 6.1,
-    "side": -1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Mianhaeyo",
-    "set": "When Did We Say Goodbye",
-    "group": 0,
-    "image": "assets/1- November19/WDWSG - Nov19/Mianhaeyo.jpg",
-    "description": "Hands darkened and eyes nearly demonic, within human and demonic presence, it regrets everything.",
-    "z": 7.199999999999999,
-    "side": 1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Breathing",
-    "set": "When Did We Say Goodbye",
-    "group": 0,
-    "image": "assets/1- November19/WDWSG - Nov19/Breathing.jpg",
-    "description": "Laying against the floor stomped by a foot there they lay, without expression.",
-    "z": 8.299999999999999,
-    "side": -1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Adios",
-    "set": "When Did We Say Goodbye",
-    "group": 0,
-    "image": "assets/1- November19/WDWSG - Nov19/Adios.jpg",
-    "description": "Man with a horse on a deserted area, either life comforting death or an acceptance of what's to become of them.",
-    "z": 9.399999999999999,
-    "side": 1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Miragem",
-    "set": "When Did We Say Goodbye",
-    "group": 0,
-    "image": "assets/1- November19/WDWSG - Nov19/Miragem.jpg",
-    "description": "It comes from within the earth and sets ablaze the whole place, the light green in the edges turns faded, the place becomes less alive and it grows.",
-    "z": 10.499999999999998,
-    "side": -1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Lorde",
-    "set": "When Did We Say Goodbye",
-    "group": 0,
-    "image": "assets/1- November19/WDWSG - Nov19/Lorde.jpg",
-    "description": "The Christian church.",
-    "z": 11.599999999999998,
-    "side": 1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Afternoon Noise",
-    "set": "When Did We Say Goodbye",
-    "group": 0,
-    "image": "assets/1- November19/WDWSG - Nov19/Afternoon Noise.jpg",
-    "description": "The tiring image of a sickened green and a obnoxious yellow where a man sit covering his face.",
-    "z": 12.699999999999998,
-    "side": -1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Solitudinem",
-    "set": "When Did We Say Goodbye",
-    "group": 0,
-    "image": "assets/1- November19/WDWSG - Nov19/Solitudinem.jpg",
-    "description": "I never asked for comfort, don't touch me pretending like you care. Figures fill the place, a place of absolutely nothing.",
-    "z": 13.799999999999997,
-    "side": 1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "We'ak",
-    "set": "When Did We Say Goodbye",
-    "group": 0,
-    "image": "assets/1- November19/WDWSG - Nov19/We_ak.jpg",
-    "description": "All the copies in the world couldn't beat the real image. They stand all the same around one single figure, he stand out within that crowd.",
-    "z": 14.899999999999997,
-    "side": -1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Late",
-    "set": "Please Call Back",
-    "group": 1,
-    "image": "assets/1- November19/Please call back - Nov19/Late.jpg",
-    "description": "Between two doors, he waits.",
-    "z": 18.499999999999996,
-    "side": 1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Night",
-    "set": "Please Call Back",
-    "group": 1,
-    "image": "assets/1- November19/Please call back - Nov19/Night.jpg",
-    "description": "Holding on to the payphone, he waits.",
-    "z": 19.599999999999998,
-    "side": -1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Noite",
-    "set": "Please Call Back",
-    "group": 1,
-    "image": "assets/1- November19/Please call back - Nov19/Noite.jpg",
-    "description": "Underneath the payphone, he waits.",
-    "z": 20.7,
-    "side": 1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Tardía",
-    "set": "Please Call Back",
-    "group": 1,
-    "image": "assets/1- November19/Please call back - Nov19/Tardía.jpg",
-    "description": "Outside the payphone, he waits.",
-    "z": 21.8,
-    "side": -1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Sound",
-    "set": "Catharsis",
-    "group": 2,
-    "image": "assets/1- November19/Catharsis - Nov19/Sound.png",
-    "description": "A white figure stands silent beneath the two lights.",
-    "z": 25.400000000000002,
-    "side": 1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Sense",
-    "set": "Catharsis",
-    "group": 2,
-    "image": "assets/1- November19/Catharsis - Nov19/Sense.png",
-    "description": "Like a jailed bird it sense the presence of someone watching, not being able to set himself free he observes quietly.",
-    "z": 26.500000000000004,
-    "side": -1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Overload",
-    "set": "Catharsis",
-    "group": 2,
-    "image": "assets/1- November19/Catharsis - Nov19/Overload.jpg",
-    "description": "Underneath a ripped wall with papers surrounding him and death standing to him side there he remains tucked within his arms.",
-    "z": 27.600000000000005,
-    "side": 1,
-    "width": 0.23,
-    "height": 0.15
-  },
-  {
-    "title": "Oath",
-    "set": "Catharsis",
-    "group": 2,
-    "image": "assets/1- November19/Catharsis - Nov19/Oath.png",
-    "description": "The figure engolfs the space where he stands, bracing himself.",
-    "z": 28.700000000000006,
-    "side": -1,
-    "width": 0.23,
-    "height": 0.15
-  }
-];
-const journeyLength=31.30;
-const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d'),modal=document.querySelector('dialog');let width,height,dpr,position=0,target=0,hits=[],last=0;
-const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
-function placeholder(a,i){const c=document.createElement('canvas');c.width=480;c.height=620;const x=c.getContext('2d');x.fillStyle=a.colors[0];x.fillRect(0,0,480,620);x.fillStyle=a.colors[1];x.beginPath();x.ellipse(220+i%3*30,285,160,225,i*.22,0,Math.PI*2);x.fill();x.fillStyle=a.colors[2];x.beginPath();x.moveTo(0,510);x.bezierCurveTo(140,190,300,570,480,260);x.lineTo(480,620);x.lineTo(0,620);x.fill();x.strokeStyle=a.colors[0];x.lineWidth=3;x.beginPath();x.arc(260,255,100,i*.3,i*.3+4);x.stroke();return c.toDataURL();}
-artworks.forEach((a,i)=>{a.src=encodeURI(a.image);a.texture=new Image();a.texture.src=a.src;});
-function resize(){width=innerWidth;height=innerHeight;dpr=Math.min(devicePixelRatio||1,2);canvas.width=width*dpr;canvas.height=height*dpr;ctx.setTransform(dpr,0,0,dpr,0,0)}addEventListener('resize',resize);resize();
-// Camera at standing eye level, 1.7 units above the corridor floor.
-const cameraHeight=1.05;
-function project(x,y,z){const depth=z-position;if(depth<=.15)return null;const f=Math.min(width*.82,height*1.1);return {x:width/2+x*f/depth,y:height*.49-(y-cameraHeight)*f/depth};}
-function poly(points,fill){if(points.some(p=>!p))return;ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.closePath();ctx.fillStyle=fill;ctx.fill();}
-function plane(x1,y1,z1,x2,y2,z2,fill){poly([project(x1,y1,z1),project(x2,y1,z2),project(x2,y2,z2),project(x1,y2,z1)],fill)}
-function drawArt(a,i){const z=a.z;if(z-position<.5||z-position>42)return;const x=a.side*1.2,top=cameraHeight+a.height/2,bottom=cameraHeight-a.height/2;const p=[project(x,top,z-a.width/2),project(x,top,z+a.width/2),project(x,bottom,z+a.width/2),project(x,bottom,z-a.width/2)];if(p.some(v=>!v))return;
-poly(p,'#181918');ctx.save();ctx.beginPath();p.forEach((v,j)=>j?ctx.lineTo(v.x,v.y):ctx.moveTo(v.x,v.y));ctx.closePath();ctx.clip();
-// Vertical image strips follow the wall's perspective, with no external rendering dependency.
-const image=a.texture;if(image.complete&&image.naturalWidth){for(let s=0;s<100;s++){let u=s/100,v=(s+1)/100;const top={x:p[0].x+(p[1].x-p[0].x)*u,y:p[0].y+(p[1].y-p[0].y)*u},bottom={x:p[3].x+(p[2].x-p[3].x)*u,y:p[3].y+(p[2].y-p[3].y)*u};let nx=p[0].x+(p[1].x-p[0].x)*v;ctx.drawImage(image,s*image.naturalWidth/100,0,image.naturalWidth/100+1,image.naturalHeight,Math.min(top.x,nx),top.y,Math.abs(nx-top.x)+1,bottom.y-top.y);}}ctx.restore();ctx.strokeStyle='#262624';ctx.lineWidth=1;ctx.beginPath();p.forEach((v,j)=>j?ctx.lineTo(v.x,v.y):ctx.moveTo(v.x,v.y));ctx.closePath();ctx.stroke();hits.push({points:p,index:i});
-const label=project(x,cameraHeight-a.height/2-.05,z);if(label && z-position<3.5){ctx.fillStyle=z>28?'#dad5cb':'#494743';ctx.font='10px Arial';ctx.textAlign='center';ctx.fillText(String(i+1).padStart(2,'0')+' / '+a.title,label.x,label.y);}}
-function tick(time){let dt=Math.min((time-last)/1000,.05);last=time;if(!modal.open){target=scrollY/Math.max(1,document.documentElement.scrollHeight-height)*journeyLength;position=reduced?target:position+(target-position)*(1-Math.exp(-dt*7));}let dark=Math.max(0,Math.min(1,position/journeyLength));let bg=Math.round(237-dark*208);ctx.fillStyle=`rgb(${bg},${bg},${bg})`;ctx.fillRect(0,0,width,height);hits=[];
-const near=position+.16,far=journeyLength+10;const floor=ctx.createLinearGradient(0,height*.49,0,height);floor.addColorStop(0,dark>.5?'#292a2b':'#b5b1a9');floor.addColorStop(1,dark>.5?'#17191c':'#ded8cc');poly([project(-1.2,-.65,near),project(1.2,-.65,near),project(1.2,-.65,far),project(-1.2,-.65,far)],floor);
-for(let z=Math.ceil((journeyLength+8)/4)*4;z>=Math.floor(position/4)*4;z-=4){let n=Math.max(z,near),e=z+4;if(e<=near)continue;let t=Math.max(0,Math.min(1,z/journeyLength)),g=Math.round(244-t*204);plane(-1.2,2.1,n,-1.2,-.65,e,`rgb(${g},${g},${g-2})`);plane(1.2,2.1,n,1.2,-.65,e,`rgb(${g-9},${g-9},${g-11})`);const l=project(-1.2,-.65,e),r=project(1.2,-.65,e);if(l&&r){ctx.strokeStyle=dark>.5?'#ffffff08':'#00000008';ctx.beginPath();ctx.moveTo(l.x,l.y);ctx.lineTo(r.x,r.y);ctx.stroke();}for(const side of [-1,1]){const p=project(side*.8,2.05,z+2);if(p){ctx.fillStyle=t>.5?'#c4b594':'#fffdf4';ctx.fillRect(p.x-10,p.y,20,2);}}}
-for(let i=artworks.length-1;i>=0;i--)drawArt(artworks[i],i);
-document.body.style.color=dark>.52?'#ece7df':'#242321';document.querySelector('#intro').style.opacity=Math.max(0,1-position/5);document.querySelector('#intro').style.visibility=position>5?'hidden':'visible';document.querySelector('#end').style.display=position>journeyLength-1.2?'block':'none';document.querySelector('#chapter').textContent=(artworks.filter(a=>a.z<=position+3).at(-1)||artworks[0]).set;document.querySelector('#bar').style.width=target/journeyLength*100+'%';document.querySelector('#percent').textContent=Math.round(target/journeyLength*100)+'% of the passage';document.querySelector('#hint').textContent=position<3?'Scroll to enter ↓':position>journeyLength-2?'Scroll back to revisit ↑':'Select a painting to look closer';requestAnimationFrame(tick);}requestAnimationFrame(tick);
-function showArt(i){const a=artworks[i];document.querySelector('#content').innerHTML=`<div class="detail"><img src="${a.src}" alt="${a.title}, painting on MDF"><div><span class="eyebrow">${a.set}</span><h2 id="modalTitle">${a.title}</h2><p>23 × 15 cm · Painted on 3 mm MDF<br>November 2019</p><p>${a.description}</p><button id="next">Next artwork →</button></div></div>`;document.querySelector('#next').onclick=()=>showArt((i+1)%artworks.length);if(!modal.open)modal.showModal();}
-function inside(x,y,p){let c=false;for(let i=0,j=p.length-1;i<p.length;j=i++){if((p[i].y>y)!=(p[j].y>y)&&x<(p[j].x-p[i].x)*(y-p[i].y)/(p[j].y-p[i].y)+p[i].x)c=!c;}return c;}
-canvas.onclick=e=>{const hit=[...hits].reverse().find(h=>inside(e.clientX,e.clientY,h.points));if(hit)showArt(hit.index)};canvas.onpointermove=e=>{canvas.style.cursor=hits.some(h=>inside(e.clientX,e.clientY,h.points))?'pointer':'default'};
-document.querySelector('#all').onclick=()=>{document.querySelector('#content').innerHTML='<div class="catalog"><span class="eyebrow">The collection · 18 paintings</span><h2 id="modalTitle">A closer look</h2><div class="grid">'+artworks.map((a,i)=>`<button class="tile" data-index="${i}"><img src="${a.src}" alt="${a.title}, painting on MDF"><span>${a.set}<br>${String(i+1).padStart(2,'0')} — ${a.title}</span></button>`).join('')+'</div></div>';document.querySelectorAll('.tile').forEach(b=>b.onclick=()=>showArt(+b.dataset.index));modal.showModal()};document.querySelector('#close').onclick=()=>modal.close();modal.onclick=e=>{if(e.target===modal){const r=modal.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)modal.close()}};
-document.querySelector('#enter').onclick=()=>scrollTo({top:(document.documentElement.scrollHeight-height)*.13,behavior:reduced?'instant':'smooth'});document.querySelector('#restart').onclick=()=>scrollTo({top:0,behavior:reduced?'instant':'smooth'});
-</script></body></html>
+<script type="module" src="./gallery-loader.js?v=set-navigation-1"></script></body></html>
