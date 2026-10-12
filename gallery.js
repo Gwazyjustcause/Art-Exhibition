@@ -31,7 +31,7 @@ for(let z=2;z<38;z+=4){const fixture=new THREE.Mesh(new THREE.BoxGeometry(.34,.0
 box(2.5,2.75,.12,new THREE.MeshStandardMaterial({color:0x33383a,roughness:.9}),0,1.375,42);
 let progress=0,target=0,last=0,cameraZ=0,yaw=0;
 const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
-function resize(){camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight,false);}addEventListener('resize',resize);resize();
+function resize(){const viewWidth=canvas.clientWidth,viewHeight=canvas.clientHeight;camera.aspect=viewWidth/viewHeight;camera.updateProjectionMatrix();renderer.setSize(viewWidth,viewHeight,false);}addEventListener('resize',resize);resize();
 function animate(time){const dt=Math.min((time-last)/1000,.05);last=time;if(!modal.open){target=scrollY/Math.max(1,document.documentElement.scrollHeight-innerHeight)*journeyLength;progress=reduced?target:progress+(target-progress)*(1-Math.exp(-dt*6));}const stop=stops.find(g=>progress>=g.z-4&&progress<=g.z+1.5);cameraZ=progress;yaw=0;
 if(stop){if(progress<stop.z-.5){const t=smooth((progress-stop.z+4)/3.5);cameraZ=progress+(stop.z-progress)*t;yaw=stop.side*Math.PI/2*t;}else if(progress<=stop.z+.5){cameraZ=stop.z;yaw=stop.side*Math.PI/2;}else{const t=smooth((progress-stop.z-.5)/1);cameraZ=stop.z+(progress-stop.z)*t;yaw=stop.side*Math.PI/2*(1-t);}}
 camera.position.set(0,1.7,cameraZ);camera.lookAt(Math.sin(yaw),1.7,cameraZ+Math.cos(yaw)); // fit the complete composition, including its title
