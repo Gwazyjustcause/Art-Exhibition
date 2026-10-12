@@ -1,27 +1,11 @@
-# Art Exhibition
+# What Remains Unsaid
 
-A Three.js virtual gallery showing 18 original paintings in three grouped wall arrangements. Scroll to travel through a white-to-charcoal corridor. The camera turns fully toward each set and holds a centred view. Select any painting for its explanation.
+A virtual exhibition by Gabriela Vicente Ferreira, with 93 paintings in 17 sets and 13 individual displays. Portuguese opens by default; English is available.
 
-## Materials and lighting
+`collection.js` contains artwork metadata and wall layouts derived from the set reference PDFs. Dimensions are in metres. Standard panels are 23 × 15 cm on 3 mm MDF; explicit dimensions override the defaults. Nervous is 60 × 90 cm acrylic on canvas.
 
-Paintings are 23 × 15 cm on 3 mm MDF. Panels have actual 3 mm geometry, exposed MDF edges and a small mounting gap. Warm spotlights cast shadows on textured plaster walls. The corridor includes a textured stone floor, floor joints, skirting and ceiling lighting tracks.
+Original uploads remain in the monthly assets folders. Optimized display copies are in `assets/display`. The 3D renderer loads nearby images and uses four reusable shadow spotlights. Canvas fallback supports browsers without WebGL.
 
-## Files
+Select a painting for its explanation. Next painting stays within its set. All artworks provides access to the entire collection.
 
-- `index.html`: layout and typography.
-- `gallery.js`: artwork data, 3D scene, navigation, raycast interaction and detail views.
-- `assets/1- November19/`: original paintings, set references and artist explanations.
-
-Three.js 0.180.0 loads from the pinned jsDelivr URL in `gallery.js`. No build step is required. The gallery needs WebGL and an internet connection to load that dependency.
-
-## GitHub Pages
-
-Publish from `main`, `/ (root)` in Settings → Pages. Website: https://gwazyjustcause.github.io/Art-Exhibition/
-
-## Adding paintings
-
-Edit the artwork array in `gallery.js`. Each work has title, set, group, image path, artist explanation, wall side, position, width and height (in metres). Keep the set layout and camera stops aligned when adding groups. Different dimensions can be specified per painting.
-
-## Controls
-
-Scroll or swipe to move; select a painting for details; All artworks opens the accessible collection overview; Escape closes the detail view. Reduced-motion preference disables camera easing. Keyboard scrolling also works.
+Published from main on GitHub Pages: https://gwazyjustcause.github.io/Art-Exhibition/
